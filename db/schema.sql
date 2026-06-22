@@ -61,9 +61,9 @@ CREATE TABLE cashflow (
     company_id TEXT,
     year TEXT,
 
-    cash_from_operating REAL,
-    cash_from_investing REAL,
-    cash_from_financing REAL,
+    operating_activity REAL,
+    investing_activity REAL,
+    financing_activity REAL,
     net_cash_flow REAL,
 
     FOREIGN KEY(company_id)

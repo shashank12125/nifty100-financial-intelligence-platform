@@ -1,0 +1,13 @@
+Added 9 missing company master records:
+AGTL
+ULTRACEMCO
+UNIONBANK
+UNITDSPR
+VBL
+VEDL
+WIPRO
+ZOMATO
+ZYDUSLIFE
+
+Result:
+PRAGMA foreign_key_check = 0

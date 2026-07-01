@@ -234,6 +234,18 @@ ratio_df["composite_quality_score"] = None
 
 print("\nKPIs Calculated Successfully")
 
+print("\nChecking ROE & ROCE Differences...")
+
+ratio_df["roe_difference"] = (
+    ratio_df["return_on_equity_pct"] -
+    ratio_df["roe_percentage"]
+).abs()
+
+ratio_df["roce_difference"] = (
+    ratio_df["return_on_equity_pct"] -
+    ratio_df["roce_percentage"]
+).abs()
+
 print(
     ratio_df[
         [
@@ -245,6 +257,51 @@ print(
         ]
     ].head()
 )
+
+# ----------------------------
+# Financial Sector Flag
+# ----------------------------
+
+financial_keywords = [
+    "BANK",
+    "FINANCE",
+    "INSURANCE",
+    "NBFC"
+]
+
+ratio_df["is_financial"] = ratio_df[
+    "company_name"
+].fillna("").str.upper().apply(
+
+    lambda x: any(
+        word in x
+        for word in financial_keywords
+    )
+
+)
+
+edge_cases = ratio_df[
+    (ratio_df["roe_difference"] > 5) |
+    (ratio_df["roce_difference"] > 5)
+].copy()
+
+edge_cases["category"] = "Formula Difference"
+
+edge_cases[
+    [
+        "company_id",
+        "year",
+        "roe_difference",
+        "roce_difference",
+        "category"
+    ]
+].to_csv(
+    "output/ratio_edge_cases.log",
+    index=False
+)
+
+print(f"Edge Cases Logged: {len(edge_cases)}")
+
 
 # ----------------------------
 # Save to SQLite

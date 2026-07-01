@@ -1,4 +1,5 @@
-from normaliser import normalize_ticker, normalize_year
+from src.etl.normaliser import normalize_ticker, normalize_year
+
 print(normalize_ticker(" abb "))
 print(normalize_ticker("adanient"))
 

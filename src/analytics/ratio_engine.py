@@ -68,6 +68,24 @@ companies["id"] = (
     .str.upper()
 )
 
+# Remove duplicate company-year records
+pnl = pnl.drop_duplicates(
+    subset=["company_id", "year"],
+    keep="first"
+)
+
+bs = bs.drop_duplicates(
+    subset=["company_id", "year"],
+    keep="first"
+)
+
+cf = cf.drop_duplicates(
+    subset=["company_id", "year"],
+    keep="first"
+)
+
+print("Duplicates removed.")
+
 # ----------------------------
 # Merge P&L + Balance Sheet
 # ----------------------------

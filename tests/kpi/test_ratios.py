@@ -66,6 +66,77 @@ class TestRatios(unittest.TestCase):
             5.0
         )
 
+    def test_debt_to_equity(self):
+        self.assertEqual(
+            debt_to_equity(
+                500,
+                500,
+                500
+            ),
+            0.5
+        )
+
+    def test_debt_free(self):
+        self.assertEqual(
+            debt_to_equity(
+                0,
+                100,
+                100
+            ),
+            0
+        )
+
+    def test_high_leverage(self):
+        self.assertTrue(
+            high_leverage_flag(
+                6,
+                False
+            )
+        )
+
+    def test_interest_coverage(self):
+        self.assertEqual(
+            interest_coverage_ratio(
+                200,
+                50,
+                50
+            ),
+            5.0
+        )
+
+    def test_interest_zero(self):
+        self.assertIsNone(
+            interest_coverage_ratio(
+                100,
+                50,
+                0
+            )
+        )
+
+    def test_icr_label(self):
+        self.assertEqual(
+            icr_label(0),
+            "Debt Free"
+        )
+
+    def test_net_debt(self):
+        self.assertEqual(
+            net_debt(
+                1000,
+                200
+            ),
+            800
+        )
+
+    def test_asset_turnover(self):
+        self.assertEqual(
+            asset_turnover(
+                2000,
+                1000
+            ),
+            2.0
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

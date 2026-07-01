@@ -70,3 +70,111 @@ def return_on_assets(
         return None
 
     return round((net_profit / total_assets) * 100, 2)
+
+# ==========================
+# Day 09 - Leverage & Efficiency Ratios
+# ==========================
+
+def debt_to_equity(
+    borrowings: float,
+    equity_capital: float,
+    reserves: float
+):
+    """
+    Debt to Equity Ratio
+    """
+
+    if borrowings == 0:
+        return 0
+
+    equity = equity_capital + reserves
+
+    if equity <= 0:
+        return None
+
+    return round(borrowings / equity, 2)
+
+
+def high_leverage_flag(
+    debt_equity: float,
+    is_financial_sector: bool
+):
+    """
+    High leverage warning
+    """
+
+    if is_financial_sector:
+        return False
+
+    return debt_equity is not None and debt_equity > 5
+
+
+def interest_coverage_ratio(
+    operating_profit: float,
+    other_income: float,
+    interest: float
+):
+    """
+    Interest Coverage Ratio
+    """
+
+    if interest == 0:
+        return None
+
+    return round(
+        (operating_profit + other_income) / interest,
+        2
+    )
+
+
+def icr_label(interest: float):
+    """
+    Label for debt-free companies
+    """
+
+    if interest == 0:
+        return "Debt Free"
+
+    return ""
+
+
+def icr_warning(icr):
+    """
+    Warning if company cannot cover interest
+    """
+
+    if icr is None:
+        return False
+
+    return icr < 1.5
+
+
+def net_debt(
+    borrowings: float,
+    investments: float
+):
+    """
+    Net Debt
+    """
+
+    return round(
+        borrowings - investments,
+        2
+    )
+
+
+def asset_turnover(
+    sales: float,
+    total_assets: float
+):
+    """
+    Asset Turnover
+    """
+
+    if total_assets == 0:
+        return None
+
+    return round(
+        sales / total_assets,
+        2
+    )

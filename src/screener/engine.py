@@ -53,10 +53,7 @@ class ScreenerEngine:
 
         )
 
-    def apply_filters(
-        self,
-        preset_name
-    ):
+    def apply_filters(self, preset_name):
 
         filters = self.config["filters"][preset_name]
 
@@ -65,37 +62,25 @@ class ScreenerEngine:
         for key, value in filters.items():
 
             if key == "roe_min":
-
-                df = df[
-                    df["return_on_equity_pct"] >= value
-                ]
+                df = df[df["return_on_equity_pct"] >= value]
 
             elif key == "debt_to_equity_max":
-
-                df = df[
-                    df["debt_to_equity"] <= value
-                ]
+                df = df[df["debt_to_equity"] <= value]
 
             elif key == "free_cash_flow_min":
+                df = df[df["free_cash_flow_cr"] >= value]
 
+            elif key == "operating_profit_margin_min":
                 df = df[
-                    df["free_cash_flow_cr"] >= value
-                ]
-
-            elif key == "sales_min":
-
-                continue
+                    df["operating_profit_margin_pct"] >= value
+                    ]
 
         df = df.sort_values(
-
             "composite_quality_score",
-
             ascending=False
-
         )
 
         return df
-
 
 if __name__ == "__main__":
 
@@ -103,16 +88,31 @@ if __name__ == "__main__":
 
     engine.add_composite_score()
 
-    quality = engine.apply_filters(
-        "quality_compounder"
-    )
+    presets = [
+        "quality_compounder",
+        "value_pick",
+        "growth_accelerator",
+        "dividend_champion",
+        "debt_free_blue_chip",
+        "turnaround_watch"
+    ]
 
-    print()
+    for preset in presets:
 
-    print(quality.head())
+        result = engine.apply_filters(preset)
 
-    print()
+        print("\n" + "=" * 60)
+        print(f"Preset : {preset}")
+        print(f"Companies Found : {len(result)}")
 
-    print(
-        f"Companies Found : {len(quality)}"
-    )
+        print(
+            result[
+                [
+                    "company_id",
+                    "year",
+                    "return_on_equity_pct",
+                    "debt_to_equity",
+                    "composite_quality_score"
+                ]
+            ].head(5)
+        )

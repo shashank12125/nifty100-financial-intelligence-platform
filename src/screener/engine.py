@@ -1,6 +1,7 @@
 import sqlite3
 import pandas as pd
 import yaml
+from export_excel import export_screeners
 
 from pathlib import Path
 
@@ -33,25 +34,45 @@ class ScreenerEngine:
 
     def add_composite_score(self):
 
-        score_columns = [
+        df = self.df.copy()
 
-            "return_on_equity_pct",
+        # ---------- Profitability ----------
+        df["profitability_score"] = (
+                df["return_on_equity_pct"].fillna(0) * 0.50 +
+                df["net_profit_margin_pct"].fillna(0) * 0.30 +
+                df["operating_profit_margin_pct"].fillna(0) * 0.20
+        )
 
-            "net_profit_margin_pct",
+        # ---------- Cash ----------
+        df["cash_score"] = (
+                df["free_cash_flow_cr"].fillna(0) * 0.70 +
+                df["cash_from_operations_cr"].fillna(0) * 0.30
+        )
 
-            "asset_turnover"
+        # ---------- Leverage ----------
+        df["leverage_score"] = (
+                (1 / (df["debt_to_equity"].fillna(0) + 1)) * 100
+        )
 
-        ]
+        # ---------- Efficiency ----------
+        df["efficiency_score"] = (
+                df["asset_turnover"].fillna(0) * 100
+        )
 
-        self.df["composite_quality_score"] = (
+        # ---------- Final Score ----------
+        df["composite_quality_score"] = (
 
-            self.df[score_columns]
+                df["profitability_score"] * 0.40 +
 
-            .fillna(0)
+                df["cash_score"] * 0.25 +
 
-            .mean(axis=1)
+                df["leverage_score"] * 0.20 +
+
+                df["efficiency_score"] * 0.15
 
         )
+
+        self.df = df
 
     def apply_filters(self, preset_name):
 
@@ -89,30 +110,35 @@ if __name__ == "__main__":
     engine.add_composite_score()
 
     presets = [
+
         "quality_compounder",
+
         "value_pick",
+
         "growth_accelerator",
+
         "dividend_champion",
+
         "debt_free_blue_chip",
+
         "turnaround_watch"
+
     ]
+
+    results = {}
 
     for preset in presets:
 
         result = engine.apply_filters(preset)
 
-        print("\n" + "=" * 60)
-        print(f"Preset : {preset}")
-        print(f"Companies Found : {len(result)}")
+        results[preset] = result
 
-        print(
-            result[
-                [
-                    "company_id",
-                    "year",
-                    "return_on_equity_pct",
-                    "debt_to_equity",
-                    "composite_quality_score"
-                ]
-            ].head(5)
-        )
+        print("\n" + "=" * 60)
+
+        print(preset)
+
+        print(f"Companies : {len(result)}")
+
+    export_screeners(results)
+
+    print("\nSprint 3 Day 17 Complete.")

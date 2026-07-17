@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 .env
 *.db
+output/*.db
+output/*.log

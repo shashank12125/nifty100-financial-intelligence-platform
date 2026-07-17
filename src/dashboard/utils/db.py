@@ -18,6 +18,7 @@ def get_companies():
 
     return df
 
+    # function for singel company
 @st.cache_data(ttl=600)
 def get_ratios(ticker, year=None):
 
@@ -44,6 +45,34 @@ def get_ratios(ticker, year=None):
     conn.close()
 
     return df
+
+    # function for entire companies
+@st.cache_data(ttl=600)
+def get_all_ratios(year=None):
+
+    conn = sqlite3.connect(DB_PATH)
+
+    query = """
+    SELECT *
+    FROM financial_ratios
+    """
+
+    params = []
+
+    if year is not None:
+        query += " WHERE year = ?"
+        params.append(year)
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=params
+    )
+
+    conn.close()
+
+    return df
+
 
 @st.cache_data(ttl=600)
 def get_pl(ticker):
@@ -200,9 +229,6 @@ def get_sector_breakdown():
 
     return df
 
-st.subheader("Sector Breakdown")
-
-sector_df = get_sector_breakdown()
 
 @st.cache_data(ttl=600)
 def get_top_companies():
@@ -283,6 +309,172 @@ def get_roe_roce_trend(ticker):
         """,
         conn,
         params=[ticker]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_screener_data():
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT
+            company_id,
+            year,
+            return_on_equity_pct,
+            debt_to_equity,
+            interest_coverage,
+            net_profit_margin_pct,
+            operating_profit_margin_pct,
+            asset_turnover,
+            revenue_cagr_5yr,
+            pat_cagr_5yr,
+            eps_cagr_5yr,
+            dividend_payout_ratio_pct,
+            composite_quality_score
+        FROM financial_ratios
+        """,
+        conn,
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_peer_groups():
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT DISTINCT peer_group_name
+        FROM peer_groups
+        ORDER BY peer_group_name
+        """,
+        conn
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_company_metrics(company_id):
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT
+            company_id,
+            year,
+            return_on_equity_pct,
+            debt_to_equity,
+            interest_coverage,
+            net_profit_margin_pct,
+            operating_profit_margin_pct,
+            asset_turnover
+        FROM financial_ratios
+        WHERE company_id = ?
+        ORDER BY year DESC
+        LIMIT 1
+        """,
+        conn,
+        params=[company_id]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_benchmark_company(peer_group):
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT company_id
+        FROM peer_groups
+        WHERE peer_group_name = ?
+        AND is_benchmark = 1
+        LIMIT 1
+        """,
+        conn,
+        params=[peer_group]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_analysis():
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        "SELECT * FROM analysis",
+        conn
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_profit_loss(company_id):
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT *
+        FROM profitandloss
+        WHERE company_id = ?
+        ORDER BY year
+        """,
+        conn,
+        params=(company_id,)
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_stock_prices():
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT *
+        FROM stock_prices
+        """,
+        conn
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_cashflow():
+
+    conn = sqlite3.connect(DB_PATH)
+
+    df = pd.read_sql(
+        """
+        SELECT *
+        FROM cashflow
+        """,
+        conn
     )
 
     conn.close()

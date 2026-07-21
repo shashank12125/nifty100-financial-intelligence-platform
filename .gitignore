@@ -6,3 +6,9 @@ __pycache__/
 *.db
 output/*.db
 output/*.log
+# Generated reports
+reports/tearsheets/
+reports/sector/
+
+# Generated outputs
+output/skipped_tearsheets.csv

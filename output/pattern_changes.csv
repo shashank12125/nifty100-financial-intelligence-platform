@@ -1,0 +1,41 @@
+company_id,previous_pattern,current_pattern
+ADANIENSOL,Mixed,Reinvestor
+ADANIENT,Reinvestor,Mixed
+ADANIGREEN,Reinvestor,Mixed
+AGTL,Mixed,Reinvestor
+AXISBANK,Mixed,Growth Funded by Debt
+BANKBARODA,Pre-Revenue,Growth Funded by Debt
+BEL,Liquidating Assets,Reinvestor
+BRITANNIA,Reinvestor,Liquidating Assets
+CANBK,Growth Funded by Debt,Reinvestor
+DLF,Reinvestor,Mixed
+GAIL,Mixed,Reinvestor
+GODREJCP,Reinvestor,Mixed
+HAVELLS,Liquidating Assets,Reinvestor
+HDFCBANK,Mixed,Liquidating Assets
+HDFCLIFE,Mixed,Reinvestor
+ICICIBANK,Growth Funded by Debt,Mixed
+ICICIPRULI,Reinvestor,Unknown
+INDUSINDBK,Growth Funded by Debt,Pre-Revenue
+IRFC,Distress Signal,Reinvestor
+ITC,Reinvestor,Liquidating Assets
+JINDALSTEL,Reinvestor,Mixed
+JIOFIN,Reinvestor,Unknown
+KOTAKBANK,Growth Funded by Debt,Mixed
+LODHA,Liquidating Assets,Mixed
+LT,Reinvestor,Liquidating Assets
+MOTHERSON,Reinvestor,Mixed
+PNB,Mixed,Growth Funded by Debt
+RELIANCE,Mixed,Reinvestor
+SBIN,Growth Funded by Debt,Reinvestor
+SHRIRAMFIN,Distress Signal,Growth Funded by Debt
+SUNPHARMA,Mixed,Reinvestor
+TATACONSUM,Reinvestor,Mixed
+TATAPOWER,Mixed,Reinvestor
+TITAN,Mixed,Reinvestor
+TORNTPHARM,Mixed,Reinvestor
+UNITDSPR,Reinvestor,Liquidating Assets
+VBL,Reinvestor,Mixed
+WIPRO,Reinvestor,Liquidating Assets
+ZOMATO,Unknown,Reinvestor
+ZYDUSLIFE,Liquidating Assets,Reinvestor

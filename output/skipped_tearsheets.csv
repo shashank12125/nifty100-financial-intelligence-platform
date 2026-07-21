@@ -1,0 +1,13 @@
+company,error
+AGTL,list index out of range
+ATGL,type NoneType doesn't define __round__ method
+SBIN,list index out of range
+TVSMOTOR,Polyline must have 2 or more points
+ULTRACEMCO,Polyline must have 2 or more points
+UNIONBANK,Polyline must have 2 or more points
+UNITDSPR,list index out of range
+VBL,list index out of range
+VEDL,list index out of range
+WIPRO,list index out of range
+ZOMATO,list index out of range
+ZYDUSLIFE,list index out of range

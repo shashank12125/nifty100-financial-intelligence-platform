@@ -22,9 +22,14 @@ from reportlab.graphics.charts.legends import Legend
 ROOT = Path(__file__).resolve().parents[2]
 
 DB = ROOT / "output" / "nifty100.db"
-OUTPUT = ROOT / "output" / "tearsheets"
+OUTPUT = ROOT / "output"
 
-OUTPUT.mkdir(exist_ok=True)
+REPORTS = ROOT / "reports"
+
+TEARSHEETS = REPORTS / "tearsheets"
+
+SECTOR_REPORTS = REPORTS / "sector"
+
 
 styles = getSampleStyleSheet()
 
@@ -476,7 +481,7 @@ def build_tearsheet(company):
     )
 
     pdf = SimpleDocTemplate(
-        str(OUTPUT / f"{company}.pdf"),
+        str(TEARSHEETS / f"{company}_tearsheet.pdf"),
         rightMargin=20,
         leftMargin=20,
         topMargin=20,
@@ -775,68 +780,63 @@ def build_page_two(story, company):
     # BATCH GENERATION
     # ---------------------------------------------------
 
-TEST_COMPANIES = [
+companies = query("""
+SELECT id
+FROM companies
+ORDER BY id
+""")
 
-    "TCS",
+def batch_generate():
 
-    "HDFCBANK",
+    companies = query("""
+    SELECT id
+    FROM companies
+    ORDER BY id
+    """)
 
-    "RELIANCE",
+    success = 0
+    failed = []
 
-    "SUNPHARMA",
+    for _, row in companies.iterrows():
 
-    "TATASTEEL"
+        company = row["id"]
 
-    ]
+        try:
 
-def batch_generate(companies):
+            print(f"Generating {company}...")
 
-        success = 0
+            build_tearsheet(company)
 
-        failed = []
+            success += 1
 
-        for company in companies:
+        except Exception as e:
 
-            try:
+            failed.append(
+                {
+                    "company": company,
+                    "error": str(e)
+                }
+            )
 
-                print(f"Generating {company}...")
+            print(f"{company} Failed -> {e}")
 
-                build_tearsheet(company)
+    print("=" * 60)
+    print("Batch Generation Completed")
+    print("=" * 60)
+    print("Success :", success)
+    print("Failed :", len(failed))
 
-                success += 1
+    if failed:
+        print("\nErrors:")
+        for f in failed:
+            print(f)
 
-            except Exception as e:
+        pd.DataFrame(failed).to_csv(
+            OUTPUT / "skipped_tearsheets.csv",
+            index=False
+        )
 
-                failed.append(
-
-                    {
-
-                        "company": company,
-
-                        "error": str(e)
-
-                    }
-
-                )
-
-                print(f"{company} Failed -> {e}")
-
-        print("=" * 60)
-
-        print("Batch Generation Completed")
-
-        print("=" * 60)
-
-        print("Success :", success)
-
-        print("Failed :", len(failed))
-
-        if failed:
-
-            print("\nErrors:")
-
-            for f in failed:
-                print(f)
+        print("\nSkipped tickers saved to output/skipped_tearsheets.csv")
 
 if __name__ == "__main__":
-    batch_generate(TEST_COMPANIES)
+    batch_generate()

@@ -52,32 +52,42 @@ def get_companies(
 
 
 @router.get("/{ticker}")
-def company_profile(ticker:str):
+def company_profile(ticker: str):
 
-    conn=get_connection()
+    conn = get_connection()
 
-    row=conn.execute("""
+    row = conn.execute("""
 
     SELECT
         c.*,
         s.*,
         fr.*
-    FROM companies c
-    LEFT JOIN sectors s
-        ON c.id=s.company_id
-    LEFT JOIN financial_ratios fr
-        ON c.id=fr.company_id
-    WHERE
-        c.id=?
-    AND
-        fr.year=(SELECT MAX(year) FROM financial_ratios)
 
-    """,(ticker,)).fetchone()
+    FROM companies c
+
+    LEFT JOIN sectors s
+        ON c.id = s.company_id
+
+    LEFT JOIN financial_ratios fr
+        ON c.id = fr.company_id
+        AND CAST(SUBSTR(fr.year,5) AS INTEGER) = (
+            SELECT MAX(CAST(SUBSTR(f2.year,5) AS INTEGER))
+            FROM financial_ratios f2
+            WHERE f2.company_id = c.id
+        )
+
+    WHERE
+        c.id = ?
+
+    """, (ticker,)).fetchone()
 
     conn.close()
 
     if row is None:
-        raise HTTPException(status_code=404,detail="Company not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Company not found"
+        )
 
     return dict(row)
 
@@ -214,3 +224,107 @@ def get_tearsheet(ticker: str):
         media_type="application/pdf",
         filename=f"{ticker}_tearsheet.pdf"
     )
+
+@router.get("/{ticker}/peers/compare")
+def compare_with_peers(ticker: str):
+
+    conn = get_connection()
+
+    # Company ka peer group
+    peer = conn.execute("""
+        SELECT peer_group_name
+        FROM peer_groups
+        WHERE company_id = ?
+    """, (ticker,)).fetchone()
+
+    if not peer:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Peer group not found")
+
+    group = peer["peer_group_name"]
+
+    # Company metrics (latest year)
+    company = conn.execute("""
+        SELECT
+            return_on_equity_pct,
+            debt_to_equity,
+            net_profit_margin_pct,
+            operating_profit_margin_pct,
+            free_cash_flow_cr
+        FROM financial_ratios
+        WHERE company_id = ?
+        ORDER BY CAST(SUBSTR(year,5) AS INTEGER) DESC
+        LIMIT 1
+    """, (ticker,)).fetchone()
+
+    # Peer average
+    peer_avg = conn.execute("""
+        SELECT
+            AVG(fr.return_on_equity_pct) AS roe,
+            AVG(fr.debt_to_equity) AS de,
+            AVG(fr.net_profit_margin_pct) AS npm,
+            AVG(fr.operating_profit_margin_pct) AS opm,
+            AVG(fr.free_cash_flow_cr) AS fcf
+        FROM financial_ratios fr
+        JOIN peer_groups pg
+            ON fr.company_id = pg.company_id
+        WHERE LOWER(pg.peer_group_name)=LOWER(?)
+        AND CAST(SUBSTR(fr.year,5) AS INTEGER)=(
+            SELECT MAX(CAST(SUBSTR(f2.year,5) AS INTEGER))
+            FROM financial_ratios f2
+            WHERE f2.company_id=fr.company_id
+        )
+    """, (group,)).fetchone()
+
+    # Benchmark company
+    benchmark = conn.execute("""
+        SELECT
+            c.id,
+            c.company_name
+        FROM peer_groups pg
+        JOIN companies c
+            ON pg.company_id=c.id
+        WHERE LOWER(pg.peer_group_name)=LOWER(?)
+        AND pg.is_benchmark=1
+    """, (group,)).fetchone()
+
+    conn.close()
+
+    return {
+        "company": dict(company) if company else {},
+        "peer_average": dict(peer_avg) if peer_avg else {},
+        "benchmark": dict(benchmark) if benchmark else {}
+    }
+
+
+
+@router.get("/{ticker}/documents")
+def company_documents(ticker: str):
+
+    conn = get_connection()
+
+    rows = conn.execute("""
+        SELECT
+            year,
+            annual_report
+        FROM documents
+        WHERE company_id=?
+        ORDER BY year DESC
+    """,(ticker,)).fetchall()
+
+    conn.close()
+
+    if not rows:
+        raise HTTPException(status_code=404, detail="Documents not found")
+
+    return [
+        {
+            "year": r["year"],
+            "annual_report": r["annual_report"],
+            "is_url_valid": (
+                r["annual_report"].startswith("http")
+                if r["annual_report"] else False
+            )
+        }
+        for r in rows
+        ]

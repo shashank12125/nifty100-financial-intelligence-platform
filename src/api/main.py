@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from src.api.routers import market_cap
+
 from src.api.routers import (
     health,
     companies,
@@ -22,7 +24,7 @@ app.include_router(screener.router)
 app.include_router(peers.router)
 app.include_router(portfolio.router)
 app.include_router(valuation.router)
-
+app.include_router(market_cap.router)
 
 @app.get("/")
 def root():

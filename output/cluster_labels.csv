@@ -1,0 +1,108 @@
+company_id,company_name,cluster_id,cluster_name,distance_from_centroid
+ABB,Abbott India Ltd,4,Turnaround,0.23366887496256206
+ADANIENSOL,Adani Energy Solutions Ltd,4,Turnaround,0.7874438340968101
+ADANIENT,Adani Enterprises Ltd,4,Turnaround,0.34774267035321094
+ADANIGREEN,Adani Green Energy Ltd,3,Defensive,0.6711254057551559
+ADANIPORTS,"Adani Ports & Special Economic Zone Ltd
+",4,Turnaround,0.09381037010960484
+ADANIPOWER,Adani Power Ltd,4,Turnaround,0.06727837350041445
+AMBUJACEM,Ambuja Cements Ltd,4,Turnaround,0.2353765624729304
+APOLLOHOSP,"Apollo Hospitals
+Chain of Indian private hospitals",4,Turnaround,0.04556315727961196
+ASIANPAINT,"Asian Paints
+Indian Multi-National Paint and Coating Manufacturing Company",4,Turnaround,0.19555871559263321
+AXISBANK,Axis Bank Ltd,3,Defensive,1.941332228178416
+BAJAJ-AUTO,Bajaj Auto Ltd,4,Turnaround,0.21810342102650815
+BAJAJFINSV,Bajaj Finserv Ltd,3,Defensive,1.166893436505277
+BAJAJHLDNG,Bajaj Holdings & Investment Ltd,4,Turnaround,0.23991751548719506
+BAJFINANCE,Bajaj Finance Ltd,0,High Quality,1.1925768219885573
+BANKBARODA,Bank of Baroda,3,Defensive,1.8302933435012623
+BEL,Bharat Electronics Ltd,1,Growth,0.7281813585812967
+BHARTIARTL,Bharti Airtel Ltd,4,Turnaround,0.6745236150706093
+BHEL,"Bharat Heavy Electricals Limited
+",4,Turnaround,0.12075607931166217
+BOSCHLTD,Bosch Ltd,4,Turnaround,0.23974092621358925
+BPCL,Bharat Petroleum Corporation Ltd,4,Turnaround,0.04217917895156807
+BRITANNIA,Britannia Industries Ltd,4,Turnaround,0.08263003767294358
+CANBK,Canara Bank,3,Defensive,2.5178726070331856
+CHOLAFIN,Cholamandalam Investment & Finance Company Ltd,3,Defensive,1.1032893599258033
+CIPLA,"Cipla Ltd
+",4,Turnaround,0.7574488946791678
+COALINDIA,Coal India Ltd,0,High Quality,2.8046102721464536
+DABUR,Dabur India Ltd,4,Turnaround,0.19294817554115992
+DIVISLAB,Divis Laboratories Ltd,4,Turnaround,0.241015307160633
+DLF,DLF Ltd,4,Turnaround,0.19935699387899186
+DMART,Avenue Supermarts Ltd,4,Turnaround,0.23021156479107122
+DRREDDY,Dr Reddys Laboratories Ltd,4,Turnaround,0.21611760171700278
+EICHERMOT,Eicher Motors Ltd,4,Turnaround,0.23266535237602554
+GAIL,GAIL (India) Ltd,4,Turnaround,0.14397424061373146
+GODREJCP,Godrej Consumer Products Ltd,4,Turnaround,0.15757786332865656
+GRASIM,Grasim Industries Ltd,4,Turnaround,0.30425169299705995
+HAL,Hindustan Aeronautics Ltd,1,Growth,0.7281813585812918
+HAVELLS,Havells India Ltd,4,Turnaround,0.22686741470195393
+HCLTECH,HCL Technologies Ltd,2,Value,0.007175324103920265
+HDFCBANK,HDFC Bank Ltd,3,Defensive,4.964315615681647
+HDFCLIFE,HDFC Life Insurance Company Ltd,4,Turnaround,0.22068833203775673
+HEROMOTOCO,"Hero MotoCorp Ltd
+",4,Turnaround,0.6375306985642685
+HINDALCO,Hindalco Industries Ltd,0,High Quality,0.3314757307098667
+HINDUNILVR,"Hindustan Unilever Ltd
+",0,High Quality,1.2461995469611418
+ICICIBANK,ICICI Bank Ltd,3,Defensive,1.2611341976927457
+ICICIGI,ICICI Lombard General Insurance Company Ltd,4,Turnaround,0.36781225628335246
+ICICIPRULI,ICICI Prudential Life Insurance Company Ltd,4,Turnaround,0.31674650245365354
+INDIGO,Interglobe Aviation Ltd,0,High Quality,1.4971655406075848
+INDUSINDBK,IndusInd Bank Ltd,3,Defensive,0.9246019820062203
+INFY,Infosys Ltd,2,Value,0.10649671493869597
+IOC,"Indian Oil Corporation
+",4,Turnaround,0.035680586738015066
+IRCTC,Indian Railway Catering & Tourism Corporation Ltd,4,Turnaround,0.2351349941351399
+IRFC,Indian Railway Finance Corporation Ltd,3,Defensive,0.57503120198958
+ITC,"ITC Ltd
+",4,Turnaround,0.2394116667689867
+JINDALSTEL,Jindal Steel & Power Ltd,4,Turnaround,0.11379853685368065
+JIOFIN,Jio Financial Services Ltd,4,Turnaround,0.24209608565763058
+JSWENERGY,JSW Energy Ltd,4,Turnaround,0.2933498654388649
+JSWSTEEL,JSW Steel Ltd,4,Turnaround,0.16124269627064483
+KOTAKBANK,"Kotak Mahindra Bank Ltd
+",3,Defensive,1.703905103685475
+LICI,Life Insurance Corporation of India,4,Turnaround,0.24513628675109764
+LODHA,Macrotech Developers Ltd,4,Turnaround,0.09201027284866575
+LT,Larsen & Toubro Ltd,4,Turnaround,0.22365087443443696
+LTIM,LTIMindtree Ltd,2,Value,0.007535375785792234
+M&M,"Mahindra & Mahindra Ltd
+",4,Turnaround,0.3367367517911475
+MARUTI,Maruti Suzuki India Ltd,4,Turnaround,0.2404927418460539
+MOTHERSON,Samvardhana Motherson International Ltd,4,Turnaround,0.04508345878608054
+NAUKRI,Info Edge (India) Ltd,4,Turnaround,0.23968544036660092
+NESTLEIND,Nestle India Ltd,4,Turnaround,0.2553273343328384
+NHPC,"NHPC Ltd
+",4,Turnaround,0.06464732433389607
+NTPC,NTPC Ltd,4,Turnaround,0.27916209122705304
+ONGC,Oil & Natural Gas Corpn Ltd,4,Turnaround,0.0861312551121198
+PFC,Power Finance Corporation Ltd,3,Defensive,0.5890521240065861
+PIDILITIND,Pidilite Industries Ltd,4,Turnaround,0.22501361243772483
+PNB,Punjab National Bank,4,Turnaround,1.0517688778113716
+POWERGRID,Power Grid Corporation of India Ltd,4,Turnaround,0.25822419469326174
+RECLTD,REC Ltd,3,Defensive,0.7109862862495974
+RELIANCE,"Reliance Industries Ltd
+",4,Turnaround,0.051193643639573974
+SBILIFE,SBI Life Insurance Company Ltd,4,Turnaround,1.3459442715147747
+SHREECEM,Shree Cement Ltd,4,Turnaround,0.21392557867684342
+SHRIRAMFIN,"Shriram Finance Ltd
+",4,Turnaround,1.1582372803960994
+SIEMENS,Siemens Ltd,4,Turnaround,0.23458120690284046
+SUNPHARMA,Sun Pharmaceuticals Industries Ltd,4,Turnaround,0.2230392930037521
+TATACONSUM,Tata Consumer Products Ltd,4,Turnaround,0.16738792812007894
+TATAMOTORS,Tata Motors Ltd,4,Turnaround,0.207139156619658
+TATAPOWER,"Tata Power Company Ltd
+",4,Turnaround,0.3431616868409651
+TATASTEEL,"Tata Steel Ltd
+",4,Turnaround,0.10593047663776735
+TCS,Tata Consultancy Services Ltd,2,Value,0.11280212030652231
+TECHM,Tech Mahindra Ltd,2,Value,0.02850575351952325
+TITAN,"Titan Company Ltd
+",4,Turnaround,0.34183897462508417
+TORNTPHARM,Torrent Pharmaceuticals Ltd,4,Turnaround,0.04573911140380395
+TRENT,Trent Ltd,4,Turnaround,0.09676800239144347
+TVSMOTOR,TVS Motor Company Ltd,4,Turnaround,1.1021429870778447

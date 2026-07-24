@@ -1,0 +1,6 @@
+,return_on_equity_pct,return_on_equity_pct,debt_to_equity,debt_to_equity,operating_profit_margin_pct,operating_profit_margin_pct,compounded_sales_growth,compounded_sales_growth,compounded_profit_growth,compounded_profit_growth
+,mean,median,mean,median,mean,median,mean,median,mean,median
+cluster_id,,,,,,,,,,
+2,40.364999999999995,40.364999999999995,0.09175,0.09175,25.5,25.5,4.0,4.0,8.0,8.0
+3,14.34,14.34,6.8088,6.8088,-44685.0,-44685.0,47.0,47.0,27.0,27.0
+4,12.7,12.7,0.0,0.0,0.0,0.0,43.0,43.0,18.0,18.0

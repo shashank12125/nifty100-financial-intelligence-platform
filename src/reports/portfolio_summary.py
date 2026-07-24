@@ -27,7 +27,8 @@ PORTFOLIO.mkdir(parents=True, exist_ok=True)
 
 
 def get_connection():
-    return sqlite3.connect(DB)
+        print("Database Path:", DB.resolve())
+        return sqlite3.connect(DB)
 
 
 def query(sql, params=None):
@@ -79,7 +80,6 @@ def trend_arrow(current, previous):
         return "→"
 
 def build_portfolio():
-
     companies = load_companies()
 
     styles = getSampleStyleSheet()
@@ -122,22 +122,22 @@ def build_portfolio():
 
         data = [
             ["KPI", "Value", "Trend"],
-            [
-                "Revenue CAGR",
-                latest["revenue_cagr_5yr"],
-                trend_arrow(
-                    latest["revenue_cagr_5yr"],
-                    previous["revenue_cagr_5yr"],
-                ),
-            ],
-            [
-                "PAT CAGR",
-                latest["pat_cagr_5yr"],
-                trend_arrow(
-                    latest["pat_cagr_5yr"],
-                    previous["pat_cagr_5yr"],
-                ),
-            ],
+            # [
+            #     "Revenue CAGR",
+            #     latest["revenue_cagr_5yr"],
+            #     trend_arrow(
+            #         latest["revenue_cagr_5yr"],
+            #         previous["revenue_cagr_5yr"],
+            #     ),
+            # ],
+            # [
+            #     "PAT CAGR",
+            #     latest["pat_cagr_5yr"],
+            #     trend_arrow(
+            #         latest["pat_cagr_5yr"],
+            #         previous["pat_cagr_5yr"],
+            #     ),
+            # ],
             [
                 "ROE",
                 latest["return_on_equity_pct"],
@@ -192,6 +192,8 @@ def build_portfolio():
     pdf.build(story)
 
     print("Portfolio Summary Generated")
+
+
 
 if __name__ == "__main__":
     build_portfolio()

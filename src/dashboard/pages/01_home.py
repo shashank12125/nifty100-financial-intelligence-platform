@@ -51,7 +51,10 @@ avg_net_profit_margin = latest_ratios[
 ].mean()
 
 
-if latest_ratios["composite_quality_score"].notna().any():
+if (
+    "composite_quality_score" in latest_ratios.columns
+    and latest_ratios["composite_quality_score"].notna().any()
+):
     avg_quality_score = latest_ratios["composite_quality_score"].mean()
 else:
     avg_quality_score = None

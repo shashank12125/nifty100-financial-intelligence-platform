@@ -1,7 +1,5 @@
-import streamlit as st
-import pandas as pd
 import plotly.express as px
-
+import streamlit as st
 from utils.db import get_cashflow
 
 st.title("💰 Capital Allocation Map")
@@ -17,7 +15,7 @@ latest = (
     .tail(1)
 )
 def classify(row):
-
+    """Classify capital allocation pattern."""
     op = row["operating_activity"]
     inv = row["investing_activity"]
     fin = row["financing_activity"]

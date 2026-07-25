@@ -1,5 +1,6 @@
+
 from fastapi import APIRouter, HTTPException
-from typing import Optional
+
 from src.api.database import get_connection
 
 router = APIRouter(prefix="/api/v1/screener", tags=["Screener"])
@@ -7,13 +8,13 @@ router = APIRouter(prefix="/api/v1/screener", tags=["Screener"])
 
 @router.get("")
 def screener(
-    min_roe: Optional[float] = None,
-    max_de: Optional[float] = None,
-    min_fcf: Optional[float] = None,
-    sector: Optional[str] = None,
-    min_rev_cagr_5yr: Optional[float] = None,
-    min_pat_cagr_5yr: Optional[float] = None,
-    max_pe: Optional[float] = None
+    min_roe: float | None = None,
+    max_de: float | None = None,
+    min_fcf: float | None = None,
+    sector: str | None = None,
+    min_rev_cagr_5yr: float | None = None,
+    min_pat_cagr_5yr: float | None = None,
+    max_pe: float | None = None
 ):
 
     if min_roe is not None and min_roe < 0:

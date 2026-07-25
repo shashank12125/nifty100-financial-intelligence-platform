@@ -1,9 +1,9 @@
 import sqlite3
+from pathlib import Path
+
 import pandas as pd
 import yaml
 from export_excel import export_screeners
-
-from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 

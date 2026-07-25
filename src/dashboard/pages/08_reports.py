@@ -1,10 +1,8 @@
-import streamlit as st
-import pandas as pd
-
-from utils.db import get_companies
-from utils.db import DB_PATH
-
 import sqlite3
+
+import pandas as pd
+import streamlit as st
+from utils.db import DB_PATH
 
 st.title("📑 Company Reports")
 st.caption("Annual Reports of Nifty 100 Companies")

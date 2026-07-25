@@ -1,8 +1,9 @@
 import sqlite3
-import pandas as pd
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import numpy as np
-from pathlib import Path
+import pandas as pd
 
 DB_PATH = "output/nifty100.db"
 

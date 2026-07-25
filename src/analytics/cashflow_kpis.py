@@ -3,15 +3,17 @@ Sprint 2 - Day 11
 Cash Flow KPI Engine
 """
 
-from typing import Optional
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 
 def free_cash_flow(
     operating_activity: float,
     investing_activity: float
 ) -> float:
     """
+    Calculate free cash flow.
     Free Cash Flow = CFO + CFI
     """
     return round(
@@ -19,56 +21,45 @@ def free_cash_flow(
         2
     )
 
-
-def cfo_quality_score(
-    cfo: float,
-    pat: float
-):
-    """
-    CFO / PAT
-    """
-
+def cfo_quality_score(cfo: float, pat: float):
+    """Calculate CFO quality score from CFO and PAT."""
     if pat == 0:
-        return None
+        return None, None
 
-    ratio = cfo / pat
+    ratio = round(cfo / pat, 2)
 
     if ratio > 1:
-        return "High Quality"
+        label = "High Quality"
+    elif ratio >= 0.5:
+        label = "Moderate"
+    else:
+        label = "Accrual Risk"
 
-    if ratio >= 0.5:
-        return "Moderate"
-
-    return "Accrual Risk"
+    return ratio, label
 
 
-def capex_intensity(
-    investing_activity: float,
-    sales: float
-):
-    """
-    CapEx %
-    """
-
+def capex_intensity(investing_activity: float, sales: float):
+    """Calculate CAPEX intensity using investing activity and sales."""
     if sales == 0:
-        return None
+        return None, None
 
-    value = abs(investing_activity) / sales * 100
+    value = round(abs(investing_activity) / sales * 100, 2)
 
     if value < 3:
-        return "Asset Light"
+        label = "Asset Light"
+    elif value <= 8:
+        label = "Moderate"
+    else:
+        label = "Capital Intensive"
 
-    if value <= 8:
-        return "Moderate"
-
-    return "Capital Intensive"
-
+    return value, label
 
 def fcf_conversion_rate(
     fcf: float,
     operating_profit: float
 ):
     """
+    Calculate free cash flow conversion rate.
     FCF / Operating Profit
     """
 
@@ -87,6 +78,7 @@ def capital_allocation_pattern(
     cff,
     quality="Moderate"
 ):
+    """Analyze capital allocation pattern."""
 
     s1 = "+" if cfo >= 0 else "-"
     s2 = "+" if cfi >= 0 else "-"
@@ -121,37 +113,9 @@ def capital_allocation_pattern(
         "Unknown"
     )
 
-def cfo_quality_score(cfo: float, pat: float):
-    if pat == 0:
-        return None, None
-
-    ratio = round(cfo / pat, 2)
-
-    if ratio > 1:
-        label = "High Quality"
-    elif ratio >= 0.5:
-        label = "Moderate"
-    else:
-        label = "Accrual Risk"
-
-    return ratio, label
-
-def capex_intensity(investing_activity: float, sales: float):
-    if sales == 0:
-        return None, None
-
-    value = round(abs(investing_activity) / sales * 100, 2)
-
-    if value < 3:
-        label = "Asset Light"
-    elif value <= 8:
-        label = "Moderate"
-    else:
-        label = "Capital Intensive"
-
-    return value, label
 
 def deleveraging_flag(cff, current_borrowings, previous_borrowings):
+    """Calculate deleveraging flag."""
     return (
         cff < 0
         and current_borrowings < previous_borrowings

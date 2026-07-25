@@ -1,7 +1,8 @@
 import sqlite3
+
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
 
 DB_PATH = "output/nifty100.db"
 

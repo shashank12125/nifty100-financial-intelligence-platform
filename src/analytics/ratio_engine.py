@@ -1,22 +1,15 @@
-import pandas as pd
 import sqlite3
 
+import pandas as pd
+from cashflow_kpis import capex_intensity, free_cash_flow
 from ratios import (
+    asset_turnover,
+    debt_to_equity,
+    interest_coverage_ratio,
     net_profit_margin,
     operating_profit_margin,
     return_on_equity,
-    debt_to_equity,
-    interest_coverage_ratio,
-    asset_turnover
 )
-
-from cashflow_kpis import (
-    free_cash_flow,
-    capex_intensity
-)
-
-from cagr import revenue_cagr
-
 
 DB_PATH = "output/nifty100.db"
 

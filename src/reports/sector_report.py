@@ -1,10 +1,10 @@
-from pathlib import Path
 import sqlite3
-import pandas as pd
+from pathlib import Path
 
+import pandas as pd
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 ROOT = Path(__file__).resolve().parents[2]
 DB = ROOT / "output" / "nifty100.db"

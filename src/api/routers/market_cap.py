@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+
 from src.api.database import get_connection
 
 router = APIRouter(prefix="/api/v1/market-cap", tags=["Market Cap"])

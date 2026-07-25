@@ -1,8 +1,6 @@
 import unittest
 
 from src.etl.normaliser import normalize_ticker, normalize_year
-import pytest
-from src.etl.normaliser import normalize_year
 
 
 class TestNormaliser(unittest.TestCase):

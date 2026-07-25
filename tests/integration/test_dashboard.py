@@ -1,8 +1,8 @@
 import pandas as pd
-
-from src.dashboard.utils.db import get_screener_data
-from src.api.main import app
 from fastapi.testclient import TestClient
+
+from src.api.main import app
+from src.dashboard.utils.db import get_screener_data
 
 client = TestClient(app)
 
@@ -20,7 +20,6 @@ def test_dashboard_matches_api():
     assert len(dashboard_df) > 0
     assert len(api_df) > 0
 
-from src.dashboard.utils.db import get_screener_data
 
 
 def test_dashboard_data():

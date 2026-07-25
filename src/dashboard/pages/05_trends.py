@@ -1,6 +1,5 @@
-import streamlit as st
 import plotly.express as px
-
+import streamlit as st
 from utils.db import (
     get_companies,
     get_profit_loss,

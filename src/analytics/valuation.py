@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -85,7 +86,7 @@ df["pe_vs_sector_median_pct"] = (
 ) * 100
 
 def valuation_flag(row):
-
+    """Generate valuation flag."""
     if row["pe_ratio"] > row["sector_median_pe"] * 1.5:
         return "Caution"
 

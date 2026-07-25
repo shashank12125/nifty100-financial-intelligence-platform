@@ -1,10 +1,7 @@
-import pandas as pd
 from pathlib import Path
 
-from cashflow_kpis import (
-    cfo_quality_score,
-    capital_allocation_pattern
-)
+import pandas as pd
+from cashflow_kpis import capital_allocation_pattern
 
 RAW_PATH = Path("data/raw")
 OUTPUT_PATH = Path("output")

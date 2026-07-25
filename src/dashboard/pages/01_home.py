@@ -1,10 +1,8 @@
-import streamlit as st
-import pandas as pd
 import plotly.express as px
-
+import streamlit as st
 from utils.db import (
-    get_companies,
     get_all_ratios,
+    get_companies,
     get_sectors,
 )
 

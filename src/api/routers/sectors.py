@@ -1,5 +1,7 @@
-from fastapi import APIRouter, HTTPException
 from statistics import median
+
+from fastapi import APIRouter, HTTPException
+
 from src.api.database import get_connection
 
 router = APIRouter(prefix="/api/v1/sectors", tags=["Sectors"])

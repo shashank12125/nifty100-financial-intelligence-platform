@@ -2,17 +2,20 @@ import threading
 import time
 
 from fastapi.testclient import TestClient
+
 from src.api.main import app
 
 client = TestClient(app)
 
 
 def call_api():
+    """Send a request to the screener API."""
     response = client.get("/api/v1/screener")
     assert response.status_code == 200
 
 
 def test_screener_load():
+    """Test concurrent load on the screener API."""
     threads = []
 
     start = time.perf_counter()

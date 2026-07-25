@@ -1,16 +1,15 @@
 from fastapi import FastAPI
-from src.api.routers import market_cap
 
 from src.api.routers import (
-    health,
     companies,
-    sectors,
-    screener,
+    health,
+    market_cap,
     peers,
     portfolio,
-    valuation
+    screener,
+    sectors,
+    valuation,
 )
-
 
 app = FastAPI(
     title="Nifty100 Financial Intelligence API",

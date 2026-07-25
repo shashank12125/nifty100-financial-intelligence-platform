@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-
 from utils.db import get_screener_data
 
 st.title("📈 Stock Screener")

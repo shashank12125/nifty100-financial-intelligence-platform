@@ -1,20 +1,25 @@
-# 📈 Nifty 100 Financial Intelligence Platform
+# 📈 Nifty100 Financial Intelligence Platform
 
-A Streamlit-based Financial Analytics Dashboard for Nifty 100 companies that provides company analysis, stock screening, peer comparison, trend analysis, sector insights, capital allocation visualization, annual reports, and valuation analytics.
+A comprehensive Financial Analytics Platform for Nifty100 companies built using Python, Streamlit, FastAPI, SQLite, and Plotly. The platform provides financial analysis, company insights, stock screening, peer comparison, valuation analytics, downloadable reports, and an interactive dashboard.
 
 ---
 
 # Features
 
-- 📊 Home Dashboard
-- 🏢 Company Profile
+- 📊 Interactive Dashboard
+- 🏢 Company Profile Analysis
 - 🔍 Stock Screener
 - 🤝 Peer Comparison
 - 📈 Trend Analysis
 - 🏭 Sector Analysis
-- 💰 Capital Allocation Map
+- 💰 Capital Allocation Analysis
 - 📑 Annual Reports
 - 📊 Valuation Analytics
+- ⚡ FastAPI REST API
+- 📄 PDF Tearsheet Generation
+- 📈 Financial KPI Analytics
+- 🗄️ SQLite Database
+- ✅ Automated Testing
 
 ---
 
@@ -22,30 +27,35 @@ A Streamlit-based Financial Analytics Dashboard for Nifty 100 companies that pro
 
 - Python
 - Streamlit
+- FastAPI
+- SQLite
 - Pandas
 - Plotly
-- SQLite
 - OpenPyXL
+- ReportLab
+- Pytest
+- Ruff
+- Black
 
 ---
 
 # Project Structure
 
-```
-nifty100-platform
+```text
+nifty100-platform/
 │
 ├── data/
-│   ├── raw/
-│   └── supporting/
-│
+├── docs/
 ├── output/
-│
+├── screenshots/
 ├── src/
 │   ├── analytics/
-│   └── dashboard/
-│
-├── screenshots/
-│
+│   ├── api/
+│   ├── dashboard/
+│   ├── etl/
+│   ├── reports/
+│   └── scripts/
+├── tests/
 ├── README.md
 └── requirements.txt
 ```
@@ -72,24 +82,55 @@ streamlit run src/dashboard/app.py
 
 ---
 
-# Run Valuation Module
+# Run API
 
 ```bash
-python src/analytics/valuation.py
+uvicorn src.api.main:app --reload
+```
+
+---
+
+# Run Tests
+
+```bash
+python -m pytest tests -q
+```
+
+Current Status
+
+```
+79 passed
+```
+
+---
+
+# Code Quality
+
+Format code
+
+```bash
+python -m black src tests
+```
+
+Lint code
+
+```bash
+python -m ruff check src tests
 ```
 
 ---
 
 # Generated Outputs
 
-The valuation module generates:
-
-- output/valuation_summary.xlsx
-- output/valuation_flags.csv
+- Valuation Summary
+- Valuation Flags
+- Performance Notes
+- Company PDF Tearsheet
+- Financial Reports
 
 ---
 
-# Dashboard Screens
+# Dashboard Modules
 
 - Home Dashboard
 - Company Profile
@@ -97,8 +138,9 @@ The valuation module generates:
 - Peer Comparison
 - Trend Analysis
 - Sector Analysis
-- Capital Allocation Map
+- Capital Allocation
 - Annual Reports
+- Valuation Analytics
 
 ---
 
@@ -132,9 +174,9 @@ The valuation module generates:
 
 ![Sector Analysis](screenshots/sector%20analysis.png)
 
-## Capital Allocation Map
+## Capital Allocation
 
-![Capital Allocation Map](screenshots/capital%20allocation%20map.png)
+![Capital Allocation](screenshots/capital%20allocation%20map.png)
 
 ## Company Reports
 
@@ -142,14 +184,19 @@ The valuation module generates:
 
 ---
 
-# Sprint 4 Deliverables
+# Sprint Deliverables
 
+- ✅ ETL Pipeline
+- ✅ SQLite Database
+- ✅ FastAPI Backend
 - ✅ Streamlit Dashboard
-- ✅ 8 Dashboard Screens
-- ✅ Cached Database Layer
-- ✅ Valuation Module
-- ✅ Valuation Summary Export
-- ✅ Valuation Flags Export
+- ✅ Financial KPI Analytics
+- ✅ Stock Screener
+- ✅ Peer Comparison
+- ✅ PDF Tearsheet Generator
+- ✅ Automated Tests (79 Passed)
+- ✅ Performance Optimization
+- ✅ Code Formatting & Linting
 
 ---
 
@@ -157,4 +204,4 @@ The valuation module generates:
 
 **Shashank Charpe**
 
-MCA | Java Backend Developer | Python | Data Analytics
+MCA Graduate | Java Backend Developer | Python | Data Analytics

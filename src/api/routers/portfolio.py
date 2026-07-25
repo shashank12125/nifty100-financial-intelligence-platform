@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from src.api.database import get_connection
 
 router = APIRouter(prefix="/portfolio", tags=["Portfolio"])

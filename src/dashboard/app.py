@@ -1,20 +1,15 @@
-import streamlit as st
-import plotly.express as px
 import importlib.util
 from pathlib import Path
 
-
+import plotly.express as px
+import streamlit as st
 from utils.db import (
     get_companies,
-    get_ratios,
-    get_pl,
-    get_bs,
-    get_cf,
     get_dashboard_summary,
     get_sector_breakdown,
-    get_top_companies
-
+    get_top_companies,
 )
+
 st.set_page_config(
     page_title="Nifty 100 Analytics",
     page_icon="📈",

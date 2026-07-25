@@ -1,5 +1,7 @@
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 from src.etl.normaliser import normalize_ticker, normalize_year
 
 RAW_PATH = Path("data/raw")

@@ -1,12 +1,10 @@
-import streamlit as st
-import pandas as pd
 import plotly.graph_objects as go
-
+import streamlit as st
 from utils.db import (
+    get_benchmark_company,
+    get_company_metrics,
     get_peer_groups,
     get_peers,
-    get_company_metrics,
-    get_benchmark_company,
 )
 
 st.title("🤝 Peer Comparison")

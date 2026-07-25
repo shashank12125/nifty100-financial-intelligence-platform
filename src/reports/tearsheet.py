@@ -1,23 +1,21 @@
-from pathlib import Path
 import sqlite3
+from pathlib import Path
 
 import pandas as pd
-
+from reportlab.graphics.charts.barcharts import VerticalBarChart
+from reportlab.graphics.charts.linecharts import HorizontalLineChart
+from reportlab.graphics.shapes import Drawing
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import (
+    PageBreak,
+    Paragraph,
     SimpleDocTemplate,
+    Spacer,
     Table,
     TableStyle,
-    Paragraph,
-    Spacer,
 )
-from reportlab.platypus import PageBreak
-from reportlab.graphics.shapes import Drawing
-from reportlab.graphics.charts.barcharts import VerticalBarChart
-from reportlab.graphics.charts.linecharts import HorizontalLineChart
-from reportlab.graphics.charts.legends import Legend
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -728,7 +726,7 @@ def build_page_two(story, company):
 
         badge = latest["pattern_label"]
 
-    except:
+    except Exception:
 
         badge = "Not Available"
 

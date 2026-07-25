@@ -1,12 +1,11 @@
+import plotly.express as px
 import streamlit as st
-
 from utils.db import (
     get_companies,
     get_company_profile,
     get_revenue_profit,
-    get_roe_roce_trend
+    get_roe_roce_trend,
 )
-import plotly.express as px
 
 st.title("🏢 Company Profile")
 

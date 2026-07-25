@@ -3,11 +3,10 @@ Financial Ratio Engine
 Sprint 2 - Day 8
 """
 
-from typing import Optional
 
 
-def net_profit_margin(net_profit: float, sales: float) -> Optional[float]:
-    """Net Profit Margin = Net Profit / Sales × 100"""
+def net_profit_margin(net_profit: float, sales: float) -> float | None:
+    """Calculate net profit margin."""
 
     if sales == 0:
         return None
@@ -15,8 +14,8 @@ def net_profit_margin(net_profit: float, sales: float) -> Optional[float]:
     return round((net_profit / sales) * 100, 2)
 
 
-def operating_profit_margin(operating_profit: float, sales: float) -> Optional[float]:
-    """Operating Profit Margin = Operating Profit / Sales × 100"""
+def operating_profit_margin(operating_profit: float, sales: float) -> float | None:
+    """Calculate operating profit margin."""
 
     if sales == 0:
         return None
@@ -26,6 +25,7 @@ def operating_profit_margin(operating_profit: float, sales: float) -> Optional[f
 
 def check_opm(calculated_opm: float, source_opm: float) -> bool:
     """
+    Validate operating profit margin.
     Returns True if difference >1%
     """
 
@@ -36,8 +36,8 @@ def return_on_equity(
     net_profit: float,
     equity_capital: float,
     reserves: float
-) -> Optional[float]:
-
+) -> float | None:
+    """Calculate return on equity."""
     equity = equity_capital + reserves
 
     if equity <= 0:
@@ -51,8 +51,8 @@ def return_on_capital_employed(
     equity_capital: float,
     reserves: float,
     borrowings: float
-) -> Optional[float]:
-
+) -> float | None:
+    """Calculate return on capital employed."""
     capital = equity_capital + reserves + borrowings
 
     if capital <= 0:
@@ -64,8 +64,8 @@ def return_on_capital_employed(
 def return_on_assets(
     net_profit: float,
     total_assets: float
-) -> Optional[float]:
-
+) -> float | None:
+    """Calculate return on assets."""
     if total_assets == 0:
         return None
 
@@ -80,9 +80,7 @@ def debt_to_equity(
     equity_capital: float,
     reserves: float
 ):
-    """
-    Debt to Equity Ratio
-    """
+    """Calculate debt-to-equity ratio."""
 
     if borrowings == 0:
         return 0
@@ -99,9 +97,7 @@ def high_leverage_flag(
     debt_equity: float,
     is_financial_sector: bool
 ):
-    """
-    High leverage warning
-    """
+    """Determine high leverage status."""
 
     if is_financial_sector:
         return False
@@ -114,9 +110,7 @@ def interest_coverage_ratio(
     other_income: float,
     interest: float
 ):
-    """
-    Interest Coverage Ratio
-    """
+    """Calculate interest coverage ratio."""
 
     if interest == 0:
         return None

@@ -3,14 +3,13 @@ Sprint 2 - Day 10
 CAGR Engine
 """
 
-from typing import Optional, Tuple
 
 
 def calculate_cagr(
     start_value: float,
     end_value: float,
     years: int
-) -> Tuple[Optional[float], Optional[str]]:
+) -> tuple[float | None, str | None]:
     """
     CAGR Formula
 

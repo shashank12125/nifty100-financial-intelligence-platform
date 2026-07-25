@@ -1,8 +1,9 @@
 import unittest
 
-from src.analytics.ratios import *
 from src.analytics.cagr import calculate_cagr
 from src.analytics.cashflow_kpis import cfo_quality_score
+from src.analytics.ratios import *
+
 
 class TestRatios(unittest.TestCase):
 

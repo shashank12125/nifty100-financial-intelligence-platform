@@ -1,14 +1,15 @@
+
 from fastapi import APIRouter, HTTPException
-from typing import Optional
+
 from src.api.database import get_connection
 
 router = APIRouter(prefix="/api/v1/companies", tags=["Companies"])
 
 @router.get("")
 def get_companies(
-        sector: Optional[str] = None,
-        market_cap_category: Optional[str] = None,
-        search: Optional[str] = None
+        sector: str | None = None,
+        market_cap_category: str | None = None,
+        search: str | None = None
 ):
 
     conn = get_connection()
@@ -94,8 +95,8 @@ def company_profile(ticker: str):
 @router.get("/{ticker}/pl")
 def profit_loss(
         ticker:str,
-        from_year:Optional[str]=None,
-        to_year:Optional[str]=None
+        from_year:str | None=None,
+        to_year:str | None=None
 ):
 
     conn=get_connection()
@@ -124,8 +125,8 @@ def profit_loss(
 @router.get("/{ticker}/bs")
 def balance_sheet(
         ticker:str,
-        from_year:Optional[str]=None,
-        to_year:Optional[str]=None
+        from_year:str | None=None,
+        to_year:str | None=None
 ):
 
     conn=get_connection()
@@ -154,8 +155,8 @@ def balance_sheet(
 @router.get("/{ticker}/cashflow")
 def cashflow(
         ticker:str,
-        from_year:Optional[str]=None,
-        to_year:Optional[str]=None
+        from_year:str | None=None,
+        to_year:str | None=None
 ):
 
     conn=get_connection()
@@ -183,7 +184,7 @@ def cashflow(
 @router.get("/{ticker}/ratios")
 def ratios(
         ticker:str,
-        year:Optional[str]=None
+        year:str | None=None
 ):
 
     conn=get_connection()
@@ -204,9 +205,10 @@ def ratios(
 
     return [dict(r) for r in rows]
 
-from fastapi.responses import FileResponse
-from fastapi import HTTPException
 import os
+
+from fastapi.responses import FileResponse
+
 
 @router.get("/{ticker}/tearsheet")
 def get_tearsheet(ticker: str):

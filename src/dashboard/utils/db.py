@@ -331,11 +331,13 @@ def get_screener_data():
             net_profit_margin_pct,
             operating_profit_margin_pct,
             asset_turnover,
-            revenue_cagr_5yr,
-            pat_cagr_5yr,
-            eps_cagr_5yr,
+            free_cash_flow_cr,
+            capex_cr,
+            earnings_per_share,
+            book_value_per_share,
             dividend_payout_ratio_pct,
-            composite_quality_score
+            total_debt_cr,
+            cash_from_operations_cr
         FROM financial_ratios
         """,
         conn,

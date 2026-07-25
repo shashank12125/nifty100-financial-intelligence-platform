@@ -1,7 +1,8 @@
 import unittest
 
 from src.analytics.ratios import *
-
+from src.analytics.cagr import calculate_cagr
+from src.analytics.cashflow_kpis import cfo_quality_score
 
 class TestRatios(unittest.TestCase):
 
@@ -136,6 +137,60 @@ class TestRatios(unittest.TestCase):
             ),
             2.0
         )
+
+    def test_high_leverage_financial_company(self):
+        self.assertFalse(
+            high_leverage_flag(
+                10,
+                True
+            )
+        )
+
+    def test_debt_to_equity_negative_equity(self):
+        self.assertIsNone(
+            debt_to_equity(
+                100,
+                -50,
+                0
+            )
+        )
+
+    def test_asset_turnover_zero_assets(self):
+        self.assertIsNone(
+            asset_turnover(
+                1000,
+                0
+            )
+        )
+
+    def test_icr_warning(self):
+        self.assertTrue(
+            icr_warning(
+                1.2
+            )
+        )
+
+    def test_cagr_turnaround(self):
+        self.assertEqual(
+            calculate_cagr(-100, 200, 5)[1],
+            "TURNAROUND"
+        )
+
+    def test_cagr_decline_to_loss(self):
+        self.assertEqual(
+            calculate_cagr(100, -50, 5)[1],
+            "DECLINE_TO_LOSS"
+        )
+
+    def test_normal_cagr(self):
+        value, flag = calculate_cagr(100, 200, 5)
+        self.assertIsNotNone(value)
+        self.assertIsNone(flag)
+
+
+    def test_cfo_quality_score(self):
+        ratio, label = cfo_quality_score(200, 100)
+        self.assertEqual(label, "High Quality")
 
 
 if __name__ == "__main__":

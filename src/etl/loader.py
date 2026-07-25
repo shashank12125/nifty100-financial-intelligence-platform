@@ -1,7 +1,6 @@
 import pandas as pd
 from pathlib import Path
-
-from normaliser import normalize_ticker, normalize_year
+from src.etl.normaliser import normalize_ticker, normalize_year
 
 RAW_PATH = Path("data/raw")
 SUPPORT_PATH = Path("data/supporting")

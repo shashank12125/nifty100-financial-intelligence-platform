@@ -16,54 +16,37 @@ class TestCashFlow(unittest.TestCase):
         )
 
     def test_quality_high(self):
-
-        self.assertEqual(
-            cfo_quality_score(
-                200,
-                100
-            ),
-            "High Quality"
-        )
+        ratio, label = cfo_quality_score(200, 100)
+        self.assertEqual(ratio, 2.0)
+        self.assertEqual(label, "High Quality")
 
     def test_quality_moderate(self):
-
-        self.assertEqual(
-            cfo_quality_score(
-                60,
-                100
-            ),
-            "Moderate"
-        )
+        ratio, label = cfo_quality_score(60, 100)
+        self.assertEqual(ratio, 0.6)
+        self.assertEqual(label, "Moderate")
 
     def test_quality_low(self):
-
-        self.assertEqual(
-            cfo_quality_score(
-                20,
-                100
-            ),
-            "Accrual Risk"
-        )
+        ratio, label = cfo_quality_score(20, 100)
+        self.assertEqual(ratio, 0.2)
+        self.assertEqual(label, "Accrual Risk")
 
     def test_capex_light(self):
-
-        self.assertEqual(
-            capex_intensity(
-                -20,
-                1000
-            ),
-            "Asset Light"
+        value, label = capex_intensity(
+            -20,
+            1000
         )
+
+        self.assertEqual(value, 2.0)
+        self.assertEqual(label, "Asset Light")
 
     def test_capex_heavy(self):
-
-        self.assertEqual(
-            capex_intensity(
-                -150,
-                1000
-            ),
-            "Capital Intensive"
+        value, label = capex_intensity(
+            -150,
+            1000
         )
+
+        self.assertEqual(value, 15.0)
+        self.assertEqual(label, "Capital Intensive")
 
     def test_fcf_conversion(self):
 
